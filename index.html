@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>scmsdl</title>
+</head>
+<body>
+    <script src="js/pixi.min.js"></script>
+    <script>
+		var app = new PIXI.Application(1500,700);
+        document.body.appendChild(app.view);
+        
+        var bg = new PIXI.Sprite.fromImage("res/bg.png");
+        bg.scale.x = 1.5;
+        app.stage.addChild(bg);
+        
+        var ditu = new PIXI.Sprite.fromImage("res/chengduditu.jpg");
+        ditu.x = 300;
+        ditu.scale.y = 0.85;
+        app.stage.addChild(ditu);
+        
+        var btn1 = new PIXI.Sprite.fromImage("res/xia.png");
+        app.stage.addChild(btn1);
+        btn1.x = 650;
+        btn1.y = 560;
+        btn1.scale.x = 0.5;
+        btn1.scale.y = 0.5;
+        
+        btn1.interactive = true;
+        btn1.on("click",open);
+        function open() {
+        	yeerba.visible = true;
+        }
+        app.ticker.add(animate);
+        function animate() {
+        	btn1.y -= 1;
+        	if(btn1.y == 520){
+        		btn1.y = 560;
+        	}
+        }
+        
+        var yeerba = new PIXI.Sprite.fromImage("res/leshanyeerba.jpg");
+        yeerba.x = 300;
+        yeerba.scale.x = 0.2;
+        yeerba.scale.y = 0.2;
+        app.stage.addChild(yeerba);
+        yeerba.visible = false;
+        
+        var guanbi = new PIXI.Sprite.fromImage("res/close.png");
+        guanbi.x = 370;
+        guanbi.y = 40;
+        guanbi.scale.x = 2.0;
+        guanbi.scale.y = 2.0;
+        yeerba.addChild(guanbi);
+        
+        guanbi.interactive = true;
+        guanbi.on("click",close);
+        function close() {
+        	yeerba.visible = false;
+        }
+    
+    </script>
+</body>
+</html>
